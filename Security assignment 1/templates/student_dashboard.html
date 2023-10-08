@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Student Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ user.username }}!</h1>
+        <h2>Your Requests:</h2>
+        <ul>
+            {% for request in requests %}
+                <li>{{ request.content }}</li>
+            {% endfor %}
+        </ul>
+        <form action="{{ url_for('submit_request') }}" method="post">
+            <label for="request_content">Submit a Request:</label>
+            <input type="text" id="request_content" name="request_content" required>
+            <button type="submit">Submit</button>
+        </form>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+</body>
+</html>
